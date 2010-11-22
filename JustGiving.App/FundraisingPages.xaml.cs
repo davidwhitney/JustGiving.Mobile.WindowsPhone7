@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using JustGiving.Api.Sdk.Model.Page;
 using JustGiving.App.Code;
 using JustGiving.App.ViewModels;
@@ -32,11 +33,10 @@ namespace JustGiving.App
             pagesTable.Visibility = Visibility.Visible;
         }
 
-        private void ContextMenuOpened(object sender, RoutedEventArgs e)
+        private void Hold(object sender, GestureEventArgs e)
         {
-            var contextMenuInstance = (ContextMenu)sender;
-            var pageShortName = contextMenuInstance.Name;
-            NavigationService.Navigate(new Uri("/FundraisingPage.xaml?pageShortName="+pageShortName, UriKind.Relative));
+            var pageShortName = ((TextBlock)e.OriginalSource).Name;
+            NavigationService.Navigate(new Uri("/FundraisingPage.xaml?pageShortName=" + pageShortName, UriKind.Relative));
         }
     }
 }

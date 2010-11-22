@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Navigation;
+using JustGiving.Api.Sdk.Model.Page;
 using JustGiving.App.Code;
+using JustGiving.App.ViewModels;
 using Microsoft.Phone.Controls;
 
 namespace JustGiving.App
@@ -9,15 +11,16 @@ namespace JustGiving.App
     {
         public Api.Sdk.Model.Page.FundraisingPage Page { get; set; }
 
-        private Api.Sdk.Model.Page.FundraisingPage Context
+        private PageViewModel Context
         {
-            get { return ((Api.Sdk.Model.Page.FundraisingPage)DataContext); }
+            get { return ((PageViewModel)DataContext); }
             set { DataContext = value; }
         }
 
         public FundraisingPage()
         {
             InitializeComponent();
+            Context = new PageViewModel();
         }
         
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -30,15 +33,22 @@ namespace JustGiving.App
             }
             
             ApplicationContext.Client.Page.RetrieveAsync(pageShortName, LoadFundraisingPage);
+            ApplicationContext.Client.Page.RetrieveDonationsForPageAsync(pageShortName, DonationsLoaded);
         }
-        
+
         private void LoadFundraisingPage(Api.Sdk.Model.Page.FundraisingPage obj)
         {
             Page = obj;
-            Context = Page;
+            Context.Page = Page;
 
             Spinner.Visibility = System.Windows.Visibility.Collapsed;
             LayoutRoot.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void DonationsLoaded(FundraisingPageDonations obj)
+        {
+            Context.Donations = obj;
+            donationsList.DataContext = Context.Donations;
         }
     }
 }
