@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows.Navigation;
+using JustGiving.App.Code;
 using Microsoft.Phone.Controls;
 
 namespace JustGiving.App
@@ -13,16 +15,26 @@ namespace JustGiving.App
             set { DataContext = value; }
         }
 
-        public FundraisingPage(Api.Sdk.Model.Page.FundraisingPage page)
+        public FundraisingPage()
         {
             InitializeComponent();
-
-            Page = page;
-            Loaded += FundraisingPageLoaded;
         }
-
-        private void FundraisingPageLoaded(object sender, RoutedEventArgs e)
+        
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            base.OnNavigatedTo(e);
+            string pageShortName;
+            if (!NavigationContext.QueryString.TryGetValue("pageShortName", out pageShortName))
+            {
+                throw new Exception("Need a pageShortName");
+            }
+            
+            ApplicationContext.Client.Page.RetrieveAsync(pageShortName, LoadFundraisingPage);
+        }
+        
+        private void LoadFundraisingPage(Api.Sdk.Model.Page.FundraisingPage obj)
+        {
+            Page = obj;
             Context = Page;
         }
     }

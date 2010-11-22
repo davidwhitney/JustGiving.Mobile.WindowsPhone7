@@ -17,16 +17,16 @@ namespace JustGiving.App
             set { DataContext = value; }
         }
 
-        public FundraisingPages(FundraisingPageSummaries pages)
+        public FundraisingPages()
         {
             InitializeComponent();
             
-            Pages = pages;
-            Loaded += FundraisingPagesLoaded;
+            ApplicationContext.Client.Page.ListAllAsync(BindPages);
         }
 
-        private void FundraisingPagesLoaded(object sender, RoutedEventArgs e)
+        private void BindPages(FundraisingPageSummaries obj)
         {
+            Pages = obj;
             Context = new PagesViewModel(Pages);
         }
 
@@ -34,14 +34,7 @@ namespace JustGiving.App
         {
             var contextMenuInstance = (ContextMenu)sender;
             var pageShortName = contextMenuInstance.Name;
-
-            ApplicationContext.Client.Page.RetrieveAsync(pageShortName, LoadFundraisingPage);
-        }
-
-        private static void LoadFundraisingPage(Api.Sdk.Model.Page.FundraisingPage obj)
-        {
-            var fundraisingPage = new FundraisingPage(obj);
-            Application.Current.RootVisual = fundraisingPage;
+            NavigationService.Navigate(new Uri("/FundraisingPage.xaml?pageShortName="+pageShortName, UriKind.Relative));
         }
     }
 }
