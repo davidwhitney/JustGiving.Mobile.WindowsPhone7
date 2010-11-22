@@ -36,6 +36,9 @@ namespace JustGiving.App
         {
             Page = obj;
             Context = Page;
+
+            Spinner.Visibility = System.Windows.Visibility.Collapsed;
+            LayoutRoot.Visibility = System.Windows.Visibility.Visible;
         }
     }
 }

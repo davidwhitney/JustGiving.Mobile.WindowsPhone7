@@ -28,6 +28,8 @@ namespace JustGiving.App
         {
             Pages = obj;
             Context = new PagesViewModel(Pages);
+            Spinner.Visibility = Visibility.Collapsed;
+            pagesTable.Visibility = Visibility.Visible;
         }
 
         private void ContextMenuOpened(object sender, RoutedEventArgs e)
