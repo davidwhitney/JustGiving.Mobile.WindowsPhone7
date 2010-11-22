@@ -10,7 +10,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="True" Height="767" Width="480">
+    shell:SystemTray.IsVisible="True" d:DesignHeight="768" d:DesignWidth="480">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
 
@@ -52,8 +52,12 @@
 
                 <!--Pivot item two-->
             <controls:PivotItem Header="update">
-                <Grid/>
-            </controls:PivotItem>
+                    <StackPanel>
+                        <TextBlock>Update your page</TextBlock>
+                        <TextBox Height="400" x:Name="tbUpdateContents"></TextBox>
+                        <Button x:Name="btnUpdate" Click="btnUpdate_Click" Content="Update"></Button>
+                    </StackPanel>
+                </controls:PivotItem>
         </controls:Pivot>
         </Grid>
 

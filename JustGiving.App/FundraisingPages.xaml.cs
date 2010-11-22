@@ -21,7 +21,7 @@ namespace JustGiving.App
         public FundraisingPages()
         {
             InitializeComponent();
-            
+
             ApplicationContext.Client.Page.ListAllAsync(BindPages);
         }
 

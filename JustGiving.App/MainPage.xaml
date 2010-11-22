@@ -39,8 +39,8 @@
             <StackPanel x:Name="ContentPanel" Margin="12,0,12,0">
                 <TextBlock HorizontalAlignment="Left" x:Name="PageTitle" Text="Log in to your account" VerticalAlignment="Top" Margin="0,18,0,0" Width="342" Foreground="#2A42C6" FontSize="24" FontWeight="Bold" />
                 <Border BorderBrush="Gray" BorderThickness="0,2,0,0" Margin="0,10,0,0" />
-                <TextBox HorizontalAlignment="Left" Name="tbUsername" Text="david@justgiving.com" VerticalAlignment="Top" Width="342" Foreground="Black" BorderBrush="Gray" />
-                <TextBox HorizontalAlignment="Left" Name="tbPassword" Text="stephens" VerticalAlignment="Top" Width="342"  Foreground="Black" BorderBrush="Gray"   />
+                <TextBox HorizontalAlignment="Left" Name="tbUsername" Text="apiunittests@justgiving.com" VerticalAlignment="Top" Width="342" Foreground="Black" BorderBrush="Gray" />
+                <TextBox HorizontalAlignment="Left" Name="tbPassword" Text="password" VerticalAlignment="Top" Width="342"  Foreground="Black" BorderBrush="Gray"   />
                 <Button Content="Login" Height="72" HorizontalAlignment="Left" Name="btnLogin" VerticalAlignment="Top" Width="160" Click="btnLogin_Click" Foreground="Black" BorderBrush="Gray"   />
             </StackPanel>
         </Border>
