@@ -7,16 +7,42 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    mc:Ignorable="d" FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True" Height="767" Width="480">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
 
     <Grid>
+
+        <Grid x:Name="LayoutRoot" Background="Transparent" Visibility="Collapsed">
+        <!--Pivot Control-->
+        <controls:Pivot Title="JustGiving" ItemsSource="{Binding PageSummaries}">
+            <!--Pivot item one-->
+            <controls:PivotItem Header="overview">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding PageTitle}" HorizontalAlignment="Left" Name="textBlock1" VerticalAlignment="Top" TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding Story}" HorizontalAlignment="Left" Name="textBlock2" VerticalAlignment="Top" TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding TotalRaised}" HorizontalAlignment="Left" Name="textBlock3" VerticalAlignment="Top" TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding Charity.Name}" HorizontalAlignment="Left" Name="textBlock4" VerticalAlignment="Top" TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding Charity.RegistrationNumber}" HorizontalAlignment="Left" Name="textBlock5" VerticalAlignment="Top" TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding Charity.Description}" HorizontalAlignment="Left" Name="textBlock6" VerticalAlignment="Top" TextWrapping="Wrap" />
+                </StackPanel>
+            </controls:PivotItem>
+
+            <!--Pivot item two-->
+            <controls:PivotItem Header="donations">
+                <Grid/>
+            </controls:PivotItem>
+            
+            <!--Pivot item two-->
+            <controls:PivotItem Header="update">
+                <Grid/>
+            </controls:PivotItem>
+        </controls:Pivot>
+        </Grid>
 
 
         <Grid x:Name="Spinner" Background="Transparent" Width="Auto" Height="Auto" Margin="170,300,0,0">
@@ -61,44 +87,6 @@
                 </Canvas.Triggers>
             </Canvas>
         </Grid>
-
-        <Grid x:Name="LayoutRoot" Background="Transparent" Visibility="Collapsed">
-        <!--Pivot Control-->
-        <controls:Pivot x:Name="PageInfo" Title="JustGiving" ItemsSource="{Binding PageSummaries}">
-            <!--Pivot item one-->
-            <controls:PivotItem Header="overview">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="{Binding PageTitle}" HorizontalAlignment="Left" Name="textBlock1" VerticalAlignment="Top" TextWrapping="Wrap" />
-                    <TextBlock Text="{Binding Story}" HorizontalAlignment="Left" Name="textBlock2" VerticalAlignment="Top" TextWrapping="Wrap" />
-                    <TextBlock Text="{Binding TotalRaised}" HorizontalAlignment="Left" Name="textBlock3" VerticalAlignment="Top" TextWrapping="Wrap" />
-                    <TextBlock Text="{Binding Charity.Name}" HorizontalAlignment="Left" Name="textBlock4" VerticalAlignment="Top" TextWrapping="Wrap" />
-                    <TextBlock Text="{Binding Charity.RegistrationNumber}" HorizontalAlignment="Left" Name="textBlock5" VerticalAlignment="Top" TextWrapping="Wrap" />
-                    <TextBlock Text="{Binding Charity.Description}" HorizontalAlignment="Left" Name="textBlock6" VerticalAlignment="Top" TextWrapping="Wrap" />
-                </StackPanel>
-            </controls:PivotItem>
-
-            <!--Pivot item two-->
-            <controls:PivotItem Header="donations">
-                <Grid/>
-            </controls:PivotItem>
-            
-            <!--Pivot item two-->
-            <controls:PivotItem Header="update">
-                <Grid/>
-            </controls:PivotItem>
-        </controls:Pivot>
     </Grid>
-</Grid>
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="appbar_button1" IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton x:Name="appbar_button2" IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
     
 </phone:PhoneApplicationPage>

@@ -15,6 +15,28 @@
     shell:SystemTray.IsVisible="True">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
+          <Controls:Pivot Title="JustGiving" x:Name="pagesTable" Visibility="Collapsed">
+            <!--Pivot item one-->
+            <Controls:PivotItem Header="my pages" Visibility="Visible">
+                <ListBox x:Name="FirstListBox" Margin="0,0,0,0" ItemsSource="{Binding PageSummaries}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0,0,0,0" Width="432" Background="{Binding BrushColor}">
+                                <TextBlock Text="{Binding PageTitle}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}">
+                                    <toolkit:ContextMenuService.ContextMenu>   
+                                        <toolkit:ContextMenu Opened="ContextMenuOpened" x:Name="{Binding PageShortName}"/>
+                                     </toolkit:ContextMenuService.ContextMenu>
+                                </TextBlock>
+                                <TextBlock Text="{Binding PageShortName}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}">
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Controls:PivotItem>
+        </Controls:Pivot>
+
+
         <Grid x:Name="Spinner" Background="Transparent" Width="Auto" Height="Auto" Margin="170,300,0,0">
             <Grid.RenderTransform>
                 <ScaleTransform x:Name="SpinnerScale" ScaleX="0.5" ScaleY="0.5" />
@@ -57,26 +79,7 @@
                 </Canvas.Triggers>
             </Canvas>
         </Grid>
-        <Controls:Pivot Title="JustGiving" x:Name="pagesTable" Visibility="Collapsed">
-            <!--Pivot item one-->
-            <Controls:PivotItem Header="my pages" Visibility="Visible">
-                <ListBox x:Name="FirstListBox" Margin="0,0,0,0" ItemsSource="{Binding PageSummaries}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,0,0,0" Width="432" Background="{Binding BrushColor}">
-                                <TextBlock Text="{Binding PageTitle}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}">
-                                    <toolkit:ContextMenuService.ContextMenu>   
-                                        <toolkit:ContextMenu Opened="ContextMenuOpened" x:Name="{Binding PageShortName}"/>
-                                     </toolkit:ContextMenuService.ContextMenu>
-                                </TextBlock>
-                                <TextBlock Text="{Binding PageShortName}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}">
-                                </TextBlock>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </Controls:PivotItem>
-        </Controls:Pivot>
+
     </Grid>
  
 </phone:PhoneApplicationPage>
